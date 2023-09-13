@@ -82,33 +82,48 @@ def game():
     try_max=12
     code_lenght=4
     win=False
+    replay=True
 
-
-    color_choosed=choose_color()
+    '''color_choosed=choose_color()'''
+    color_choosed=[[0],["R","G","B","Y","P","W"]]
     print("code lenght : "+ str(code_lenght))
     true_combinaison = random_combinaison(color_choosed[1],code_lenght)
-    '''true_combinaison=["G","R","B","Y"]
-    print(true_combinaison)'''
+    '''true_combinaison=["G","R","B","Y"]'''
 
-    while(try_number!=try_max and win==False):
 
-        user_combinaison = ask_combinaison()
-        number_of_correct_colors=number_correct_colors(user_combinaison,true_combinaison)
-        number_of_partial_colors=number_partial_colors(user_combinaison,true_combinaison)
+    while(replay):
 
-        if(number_of_correct_colors==4):
-            win=True
+        while(try_number!=try_max and win==False):
+
+            print(true_combinaison)
+
+            user_combinaison = ask_combinaison()
+            number_of_correct_colors=number_correct_colors(user_combinaison,true_combinaison)
+            number_of_partial_colors=number_partial_colors(user_combinaison,true_combinaison)
+
+            if(number_of_correct_colors==4):
+                win=True
+            else:
+                print("Number of partial colors : " + str(number_of_partial_colors))
+                print("Number of correct colors : " + str(number_of_correct_colors))
+                print("Try again !")
+            try_number += 1
+
+
+        if(win):
+            print("You win with "+str(try_number)+" attemps")
         else:
-            print("Number of partial colors : " + str(number_of_partial_colors))
-            print("Number of correct colors : " + str(number_of_correct_colors))
-            print("Try again !")
-        try_number += 1
+            print("You lose sorry :( ")
 
+        choice=input("Do you want replay ?")
+        if(choice=="no"):
+            replay=False
+        else:
+            try_number=0
+            win=False
+            true_combinaison = random_combinaison(color_choosed[1], code_lenght)
 
-    if(win):
-        print("You win with "+str(try_number)+" attemps")
-    else:
-        print("You lose sorry :( ")
+    print("Game over")
 
 
 game()

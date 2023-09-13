@@ -69,12 +69,28 @@
       <option name="project" value="LOCAL" />
       <updated>1694590945615</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="passage consigne 1 -&gt; consigne 2 : création fonction choose_color et ajout de variables pour changer le nombre d'essais et la taille du code">
+      <created>1694596874938</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1694596874938</updated>
+    </task>
+    <task id="LOCAL-00003" summary="test du bon fonctionnement de la fonction game">
+      <created>1694597143819</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1694597143819</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="création des fonctions number_of_correct_colors,random_combinaison et test de ces fonctions avec le main" />
-    <option name="LAST_COMMIT_MESSAGE" value="création des fonctions number_of_correct_colors,random_combinaison et test de ces fonctions avec le main" />
+    <MESSAGE value="passage consigne 1 -&gt; consigne 2 : création fonction choose_color et ajout de variables pour changer le nombre d'essais et la taille du code" />
+    <MESSAGE value="test du bon fonctionnement de la fonction game" />
+    <option name="LAST_COMMIT_MESSAGE" value="test du bon fonctionnement de la fonction game" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
