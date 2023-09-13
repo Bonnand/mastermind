@@ -1,4 +1,5 @@
 import random
+import os
 
 '''Correct colors : number of good color and good placement'''
 '''Partial colors : number of good color but bad placement'''
@@ -75,6 +76,23 @@ def number_correct_colors(user_combinaison,true_combinaison):
 
     return number_correct
 
+def write_file(file_path,argument,value="0"):
+
+    if(argument=="init"):
+        if (os.path.isfile(file_path)!=1 ):
+            with open(file_path, 'w') as file:
+                file.write(value)
+        else:
+            with open(file_path, 'w') as file:
+                file.write(value)
+    elif
+
+def read_file(file_path):
+    with open(file_path, 'r') as file:
+        lignes = file.readlines()
+
+        return lignes[0]
+
 
 
 def game():
@@ -83,6 +101,10 @@ def game():
     code_lenght=4
     win=False
     replay=True
+
+
+    print("Number of games_played : " + read_file('.statistics/games_played.txt') )
+    print("Score : " + read_file('.statistics/score.txt'))
 
     '''color_choosed=choose_color()'''
     color_choosed=[[0],["R","G","B","Y","P","W"]]
@@ -126,4 +148,5 @@ def game():
     print("Game over")
 
 
-game()
+write_file('.statistics/games_played.txt',str(6))
+print(read_file('.statistics/games_played.txt'))

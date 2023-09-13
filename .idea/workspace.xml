@@ -24,12 +24,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/abonn/Desktop/Cours ESIREM/3ème Année/S Info/plus petit ou plus grand/pluspetitouplusgrand"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="mastermind" />
@@ -83,26 +84,34 @@
       <option name="project" value="LOCAL" />
       <updated>1694597143819</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="passage consigne 2 -&gt; consigne 3 : réalisation du mode replay">
+      <created>1694597636296</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1694597636296</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="création des fonctions number_of_correct_colors,random_combinaison et test de ces fonctions avec le main" />
     <MESSAGE value="passage consigne 1 -&gt; consigne 2 : création fonction choose_color et ajout de variables pour changer le nombre d'essais et la taille du code" />
     <MESSAGE value="test du bon fonctionnement de la fonction game" />
-    <option name="LAST_COMMIT_MESSAGE" value="test du bon fonctionnement de la fonction game" />
+    <MESSAGE value="passage consigne 2 -&gt; consigne 3 : réalisation du mode replay" />
+    <option name="LAST_COMMIT_MESSAGE" value="passage consigne 2 -&gt; consigne 3 : réalisation du mode replay" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>9</line>
+          <line>10</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>12</line>
+          <line>13</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
