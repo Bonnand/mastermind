@@ -46,7 +46,7 @@ def random_combinaison(color_choosed,code_lenght):
     return random_list
 
 '''test the number of partial colors in user's combinaison'''
-def number_partial_colors(user_combinaison,true_combinaison,number_correct):
+def number_partial_colors(user_combinaison,true_combinaison):
 
     number=0
     list=user_combinaison
@@ -83,18 +83,18 @@ def game():
     code_lenght=4
     win=False
 
-    choose_color()
+
+    color_choosed=choose_color()
     print("code lenght : "+ str(code_lenght))
-    #true_combinaison = random_combinaison(choose_color[1],code_lenght)
-    true_combinaison=["G","R","B","Y"]
-    print(true_combinaison)
+    true_combinaison = random_combinaison(color_choosed[1],code_lenght)
+    '''true_combinaison=["G","R","B","Y"]
+    print(true_combinaison)'''
 
     while(try_number!=try_max and win==False):
 
         user_combinaison = ask_combinaison()
         number_of_correct_colors=number_correct_colors(user_combinaison,true_combinaison)
-        number_of_partial_colors=number_partial_colors(user_combinaison,true_combinaison,
-                                            number_correct_colors(user_combinaison,true_combinaison) )
+        number_of_partial_colors=number_partial_colors(user_combinaison,true_combinaison)
 
         if(number_of_correct_colors==4):
             win=True
@@ -111,3 +111,4 @@ def game():
         print("You lose sorry :( ")
 
 
+game()
