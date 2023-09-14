@@ -101,9 +101,10 @@ def statistics_display(games_played,score):
 
 
 def game():
+    replay = True
     try_max=12
     code_lenght=4
-    replay=True
+
 
     if(test_file(".statistics/games_played.txt")==False):
         write_file(".statistics/games_played.txt","0")
@@ -118,15 +119,22 @@ def game():
     print("code lenght : " + str(code_lenght))
     statistics_display(games_played,score)
 
-    '''color_choosed=choose_color()'''
-    color_choosed=[[0],["R","G","B","Y","P","W"]]
-    true_combinaison = random_combinaison(color_choosed[1],code_lenght)
+
+    print("Standard colors : Red|Green|Blue|Yellow|Purple|White")
+    choice=input("Do you want to choose your colors or standart colors ? (your/standard)")
+
+    if(choice=="your"):
+        color_choosed = choose_color()
+    elif(choice=="standard"):
+        color_choosed = [[0], ["R", "G", "B", "Y", "P", "W"]]
+
+
     '''true_combinaison=["G","R","B","Y"]'''
 
 
     while(replay):
 
-        choice = input("What do you want to do : play/replay or leave or reset or BOT")
+        choice = input("What do you want to do : play/replay or leave or reset")
 
         if(choice=="play" or choice=="replay"):
             game_over=False
@@ -145,14 +153,14 @@ def game():
                 if(number_of_correct_colors==4):
                     game_over=True
                 else:
-                    print("Number of partial colors : " + str(number_of_partial_colors))
-                    print("Number of correct colors : " + str(number_of_correct_colors))
+                    print("Correct : " + str(number_of_correct_colors) +" | Partial : "+ str(number_of_partial_colors))
                     print("Try again !")
                 try_number += 1
 
 
             if(game_over):
                 print("You win with "+str(try_number)+" attemps")
+                print("12 - "+str(try_number))
                 score+=1
 
             else:
