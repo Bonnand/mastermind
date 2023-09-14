@@ -76,16 +76,18 @@ def number_correct_colors(user_combinaison,true_combinaison):
 
     return number_correct
 
-def write_file(file_path,argument,value="0"):
+def test_file(file_path):
 
-    if(argument=="init"):
-        if (os.path.isfile(file_path)!=1 ):
-            with open(file_path, 'w') as file:
-                file.write(value)
-        else:
-            with open(file_path, 'w') as file:
-                file.write(value)
-    elif
+    if (os.path.isfile(file_path) == 1):
+        return True
+    else:
+        return False
+
+def write_file(file_path,value):
+
+        with open(file_path, 'w') as file:
+            file.write(value)
+
 
 def read_file(file_path):
     with open(file_path, 'r') as file:
@@ -96,19 +98,29 @@ def read_file(file_path):
 
 
 def game():
+    score=0
+    games_played=0
     try_number=0
     try_max=12
     code_lenght=4
     win=False
     replay=True
 
+    if(test_file(".statistics/games_played.txt")==False):
+        write_file(".statistics/games_played.txt","0")
 
-    print("Number of games_played : " + read_file('.statistics/games_played.txt') )
-    print("Score : " + read_file('.statistics/score.txt'))
+    if (test_file(".statistics/score.txt") == False):
+        write_file(".statistics/score.txt","0")
+
+    games_played=int(read_file('.statistics/games_played.txt'))
+    score=int(read_file('.statistics/score.txt'))
+
+    print("code lenght : " + str(code_lenght))
+    print("Number of games_played : " + str(games_played))
+    print("Score : " + str(score))
 
     '''color_choosed=choose_color()'''
     color_choosed=[[0],["R","G","B","Y","P","W"]]
-    print("code lenght : "+ str(code_lenght))
     true_combinaison = random_combinaison(color_choosed[1],code_lenght)
     '''true_combinaison=["G","R","B","Y"]'''
 
@@ -134,10 +146,19 @@ def game():
 
         if(win):
             print("You win with "+str(try_number)+" attemps")
+            score+=1
+            print("You")
         else:
             print("You lose sorry :( ")
+        games_played+=1
 
+        write_file(".statistics/games_played.txt", str(games_played) )
+        write_file(".statistics/score.txt", str(score) )
+
+        print("Number of games_played : " + str(games_played))
+        print("Score : " + str(score))
         choice=input("Do you want replay ?")
+
         if(choice=="no"):
             replay=False
         else:
@@ -147,6 +168,4 @@ def game():
 
     print("Game over")
 
-
-write_file('.statistics/games_played.txt',str(6))
-print(read_file('.statistics/games_played.txt'))
+game()

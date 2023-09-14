@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="39cc48d7-f41d-42b8-8b6e-b6798acbdab1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.statistics/game_played.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.statistics/games_played.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.statistics/games_played.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +30,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/abonn/Desktop/Cours ESIREM/3ème Année/S Info/plus petit ou plus grand/pluspetitouplusgrand"
+    "last_opened_file_path": "C:/Users/abonn/Desktop/Cours ESIREM/3ème Année/S Info/plus petit ou plus grand"
   }
 }]]></component>
   <component name="RunManager">
@@ -91,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694597636296</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="création des fonctions read_file and write_file et test dans la fonction game(en cours)">
+      <created>1694599040115</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1694599040115</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -99,7 +108,8 @@
     <MESSAGE value="passage consigne 1 -&gt; consigne 2 : création fonction choose_color et ajout de variables pour changer le nombre d'essais et la taille du code" />
     <MESSAGE value="test du bon fonctionnement de la fonction game" />
     <MESSAGE value="passage consigne 2 -&gt; consigne 3 : réalisation du mode replay" />
-    <option name="LAST_COMMIT_MESSAGE" value="passage consigne 2 -&gt; consigne 3 : réalisation du mode replay" />
+    <MESSAGE value="création des fonctions read_file and write_file et test dans la fonction game(en cours)" />
+    <option name="LAST_COMMIT_MESSAGE" value="création des fonctions read_file and write_file et test dans la fonction game(en cours)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
