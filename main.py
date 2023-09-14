@@ -5,9 +5,9 @@ import os
 '''Correct colors : number of good color and good placement'''
 '''Partial colors : number of good color but bad placement'''
 
-'''Colors definition'''
+'''Colors definition       (Useless)
 
-'''def recognize_color(color):
+def recognize_color(color):    
     if(color=="R"):
         return "Red"
     elif (color == "G"):
@@ -39,6 +39,8 @@ def ask_combination(code_lenght):
 
     return(combination)
 
+
+'''Creation of random code with user's colors '''
 def random_combination(color_choosed,code_lenght):
     random_list=["None"]*code_lenght
 
@@ -80,6 +82,7 @@ def number_correct_colors(user_combination, true_combination):
 
     return number_correct
 
+'''Test if the file name : "file_path" exist'''
 def test_file(file_path):
 
     if (os.path.isfile(file_path) == 1):
@@ -87,12 +90,14 @@ def test_file(file_path):
     else:
         return False
 
+'''permet to write a value in a file'''
 def write_file(file_path,value):
 
         with open(file_path, 'w') as file:
             file.write(value)
             file.close()
 
+'''permet to read a value in a file'''
 def read_file(file_path):
     with open(file_path, 'r') as file:
         lignes = file.readlines()
@@ -100,25 +105,31 @@ def read_file(file_path):
 
         return lignes[0]
 
-
+'''It's saying in fonction's name '''
 def statistics_display(games_played,score):
     print("Number of games_played : " + str(games_played))
     print("Score : " + str(score))
 
 
 def game():
+    '''Definition of variables'''
+
     replay = True
     try_max=12
-    code_lenght=3
+    code_lenght=4
     first_play=True
     validated_colors=False
     validated_combination=False
+
+    '''Create and write a "0" if file doesn't exist'''
 
     if(test_file(".statistics/games_played.txt")==False):
         write_file(".statistics/games_played.txt","0")
 
     if (test_file(".statistics/score.txt") == False):
         write_file(".statistics/score.txt","0")
+
+    '''Read statistics of those two files'''
 
     games_played=int(read_file('.statistics/games_played.txt'))
     score=int(read_file('.statistics/score.txt'))
@@ -144,7 +155,7 @@ def game():
         if(validated_colors==False):
             print("Please answer to the question")
 
-    true_combination=["W","W","R"]
+    #true_combination=["W","W","R"]
 
 
     while(replay):
@@ -155,22 +166,29 @@ def game():
             choice = input("What do you want to do : replay/leave/reset")
 
         if(choice=="play" or choice=="replay"):
+
+            '''Variables initialisation/reinitialisation'''
+
             first_play=False
             game_over=False
             try_number = 0
-            #true_combination = random_combination(color_choosed[1], code_lenght)
+            true_combination = random_combination(color_choosed[1], code_lenght)
 
             while(try_number!=try_max and game_over==False):
 
-                print(true_combination)
+                #print(true_combination)
 
                 while(validated_combination==False):
 
                     user_combination = ask_combination(code_lenght)
+
+                    '''if user don't write a good code, code asking him again'''
                     if(len(user_combination)==code_lenght):
                         validated_combination=True
                     else:
                         print("You don't write a good combination, try again !")
+
+                validated_combination=False
 
                 number_of_correct_colors=number_correct_colors(user_combination,true_combination)
                 number_of_partial_colors=number_partial_colors(user_combination,true_combination)
@@ -188,7 +206,6 @@ def game():
                 print(f"You win with {str(try_number)} attempt{'s' if try_number>1 else ''}")
                 print("12 - "+str(try_number))
                 score+=1
-
             else:
                 print("You lose sorry :( ")
 
