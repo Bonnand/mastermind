@@ -22,6 +22,8 @@ def recognize_color(color):
     elif (color == "W"):
         return "White"
 '''
+
+'''Ask the user to choose colors'''
 def choose_color():
     color=["None"]*6
     initial=["None"]*6
@@ -229,11 +231,11 @@ def game():
 
     print("Game finish")
 
-'''game()'''
+game()
 
-root = Tk()
+'''root = Tk()
 frm = ttk.Frame(root, padding=10)
 frm.grid()
 ttk.Label(frm, text="Hello World!").grid(column=0, row=0)
 ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
-root.mainloop()
+root.mainloop()'''
