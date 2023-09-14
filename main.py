@@ -6,7 +6,7 @@ import os
 
 '''Colors definition'''
 
-def recognize_color(color):
+'''def recognize_color(color):
     if(color=="R"):
         return "Red"
     elif (color == "G"):
@@ -19,7 +19,7 @@ def recognize_color(color):
         return "Purple"
     elif (color == "W"):
         return "White"
-
+'''
 def choose_color():
     color=["None"]*6
     initial=["None"]*6
@@ -32,13 +32,13 @@ def choose_color():
     return [color,initial]
 
 '''Ask the user to obtain a potential true combination'''
-def ask_combination():
-    combination = input("Write combination : first-second-third-four")
+def ask_combination(code_lenght):
+    combination = input("Write combination with "+str(code_lenght)+" colors (example : R-G-B-Y for RED GREEN BLUE YELLOW)")
     combination = combination.split("-")
 
     return(combination)
 
-def random_combinaison(color_choosed,code_lenght):
+def random_combination(color_choosed,code_lenght):
     random_list=["None"]*code_lenght
 
     for idx in range(code_lenght):
@@ -50,18 +50,20 @@ def random_combinaison(color_choosed,code_lenght):
 def number_partial_colors(user_combination, true_combination):
 
     number=0
-    list=true_combination.copy()
-    list2=user_combination.copy()
+    true_combination_copy=true_combination.copy()
+    user_combination_copy=user_combination.copy()
 
     for idx in range(len(user_combination)):
         if(user_combination[idx]==true_combination[idx]):
-                list[idx]="_"
-                list2[idx]="#"
+                true_combination_copy[idx]="_"
+                user_combination_copy[idx]="#"
 
-    for first_idx in range(len(list)):
-        for second_idx in range(len(list2)):
+    for first_idx in range(len(true_combination_copy)):
+        for second_idx in range(len(user_combination_copy)):
 
-            if(list[first_idx]==list2[second_idx]):
+            if(true_combination_copy[first_idx]==user_combination_copy[second_idx]):
+                true_combination_copy[first_idx]="-"
+                user_combination_copy[second_idx]="#"
                 number+=1
 
     return number
@@ -104,7 +106,7 @@ def statistics_display(games_played,score):
 def game():
     replay = True
     try_max=12
-    code_lenght=4
+    code_lenght=3
     first_play=True
     validated_colors=False
 
@@ -126,7 +128,7 @@ def game():
     print("Standard colors : Red|Green|Blue|Yellow|Purple|White")
 
     while(validated_colors==False):
-        choice=input("Do you want to choose your colors or standart colors ? (your/standard)")
+        choice=input("Do you want to choose your colors or standard colors ? (your/standard)")
 
         if(choice=="your"):
             color_choosed = choose_color()
@@ -139,7 +141,7 @@ def game():
         if(validated_colors==False):
             print("Please answer to the question")
 
-    true_combination=["R","G","B","Y"]
+    true_combination=["W","W","R"]
 
 
     while(replay):
@@ -153,18 +155,18 @@ def game():
             first_play=False
             game_over=False
             try_number = 0
-            '''true_combination = random_combination(color_choosed[1], code_lenght)'''
+            #true_combination = random_combination(color_choosed[1], code_lenght)
 
             while(try_number!=try_max and game_over==False):
 
                 print(true_combination)
 
-                user_combination = ask_combination()
+                user_combination = ask_combination(code_lenght)
                 number_of_correct_colors=number_correct_colors(user_combination,true_combination)
                 number_of_partial_colors=number_partial_colors(user_combination,true_combination)
 
 
-                if(number_of_correct_colors==4):
+                if(number_of_correct_colors==len(true_combination)):
                     game_over=True
                 else:
                     print("Correct : " + str(number_of_correct_colors) +" | Partial : "+ str(number_of_partial_colors))
