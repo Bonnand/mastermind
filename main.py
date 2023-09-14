@@ -1,6 +1,7 @@
 import random
 import os
-
+from tkinter import *
+from tkinter import ttk
 
 '''Correct colors : number of good color and good placement'''
 '''Partial colors : number of good color but bad placement'''
@@ -228,4 +229,11 @@ def game():
 
     print("Game finish")
 
-game()
+'''game()'''
+
+root = Tk()
+frm = ttk.Frame(root, padding=10)
+frm.grid()
+ttk.Label(frm, text="Hello World!").grid(column=0, row=0)
+ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
+root.mainloop()
