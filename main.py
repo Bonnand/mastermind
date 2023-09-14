@@ -95,15 +95,14 @@ def read_file(file_path):
 
         return lignes[0]
 
+def statistics_display(games_played,score):
+    print("Number of games_played : " + str(games_played))
+    print("Score : " + str(score))
 
 
 def game():
-    score=0
-    games_played=0
-    try_number=0
     try_max=12
     code_lenght=4
-    win=False
     replay=True
 
     if(test_file(".statistics/games_played.txt")==False):
@@ -115,9 +114,9 @@ def game():
     games_played=int(read_file('.statistics/games_played.txt'))
     score=int(read_file('.statistics/score.txt'))
 
+
     print("code lenght : " + str(code_lenght))
-    print("Number of games_played : " + str(games_played))
-    print("Score : " + str(score))
+    statistics_display(games_played,score)
 
     '''color_choosed=choose_color()'''
     color_choosed=[[0],["R","G","B","Y","P","W"]]
@@ -127,45 +126,55 @@ def game():
 
     while(replay):
 
-        while(try_number!=try_max and win==False):
+        choice = input("What do you want to do : play/replay or leave or reset or BOT")
 
-            print(true_combinaison)
-
-            user_combinaison = ask_combinaison()
-            number_of_correct_colors=number_correct_colors(user_combinaison,true_combinaison)
-            number_of_partial_colors=number_partial_colors(user_combinaison,true_combinaison)
-
-            if(number_of_correct_colors==4):
-                win=True
-            else:
-                print("Number of partial colors : " + str(number_of_partial_colors))
-                print("Number of correct colors : " + str(number_of_correct_colors))
-                print("Try again !")
-            try_number += 1
-
-
-        if(win):
-            print("You win with "+str(try_number)+" attemps")
-            score+=1
-            print("You")
-        else:
-            print("You lose sorry :( ")
-        games_played+=1
-
-        write_file(".statistics/games_played.txt", str(games_played) )
-        write_file(".statistics/score.txt", str(score) )
-
-        print("Number of games_played : " + str(games_played))
-        print("Score : " + str(score))
-        choice=input("Do you want replay ?")
-
-        if(choice=="no"):
-            replay=False
-        else:
-            try_number=0
-            win=False
+        if(choice=="play" or choice=="replay"):
+            game_over=False
+            try_number = 0
             true_combinaison = random_combinaison(color_choosed[1], code_lenght)
 
-    print("Game over")
+            while(try_number!=try_max and game_over==False):
+
+                print(true_combinaison)
+
+                user_combinaison = ask_combinaison()
+                number_of_correct_colors=number_correct_colors(user_combinaison,true_combinaison)
+                number_of_partial_colors=number_partial_colors(user_combinaison,true_combinaison)
+
+
+                if(number_of_correct_colors==4):
+                    game_over=True
+                else:
+                    print("Number of partial colors : " + str(number_of_partial_colors))
+                    print("Number of correct colors : " + str(number_of_correct_colors))
+                    print("Try again !")
+                try_number += 1
+
+
+            if(game_over):
+                print("You win with "+str(try_number)+" attemps")
+                score+=1
+
+            else:
+                print("You lose sorry :( ")
+
+            games_played+=1
+            statistics_display(games_played,score)
+            write_file(".statistics/games_played.txt", str(games_played))
+            write_file(".statistics/score.txt", str(score))
+
+        elif (choice == "leave"):
+            print("You leave the game")
+            replay= False
+
+        elif (choice == "reset"):
+            games_played=0
+            score=0
+            write_file(".statistics/games_played.txt","0")
+            write_file(".statistics/score.txt", "0")
+            statistics_display(games_played, score)
+
+
+    print("Game finish")
 
 game()
