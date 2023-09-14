@@ -50,17 +50,18 @@ def random_combinaison(color_choosed,code_lenght):
 def number_partial_colors(user_combinaison,true_combinaison):
 
     number=0
-    list=user_combinaison
+    list=true_combinaison
+    list2=user_combinaison
 
     for idx in range(len(user_combinaison)):
-        for idx2 in range(len(user_combinaison)):
-            if(user_combinaison[idx]==true_combinaison[idx2]):
+        if(user_combinaison[idx]==true_combinaison[idx]):
                 list[idx]="_"
+                list2[idx]="#"
 
-    for first_idx in range(len(user_combinaison)):
-        for second_idx in range(len(true_combinaison)):
+    for first_idx in range(len(list)):
+        for second_idx in range(len(list2)):
 
-            if(user_combinaison[first_idx]==true_combinaison[second_idx]):
+            if(list[first_idx]==list2[second_idx]):
                 number+=1
 
     return number
@@ -129,7 +130,7 @@ def game():
         color_choosed = [[0], ["R", "G", "B", "Y", "P", "W"]]
 
 
-    '''true_combinaison=["G","R","B","Y"]'''
+    true_combinaison=["R","G","B","Y"]
 
 
     while(replay):
@@ -139,7 +140,7 @@ def game():
         if(choice=="play" or choice=="replay"):
             game_over=False
             try_number = 0
-            true_combinaison = random_combinaison(color_choosed[1], code_lenght)
+            '''true_combinaison = random_combinaison(color_choosed[1], code_lenght)'''
 
             while(try_number!=try_max and game_over==False):
 
