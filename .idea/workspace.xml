@@ -7,6 +7,7 @@
     <list default="true" id="39cc48d7-f41d-42b8-8b6e-b6798acbdab1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.statistics/games_played.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.statistics/games_played.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.statistics/score.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.statistics/score.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694678745217</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="amélioration de la fonction number_partial_colors (fonctionne avec toutes les combinaisons)">
+      <created>1694699559962</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1694699559962</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -148,19 +156,20 @@
     <MESSAGE value="rectification de certaines formulations et demande, au début, quelles couleurs veut l'utilisateur" />
     <MESSAGE value="rectification de la fonction partial colors pour qu'elle marche dans tout les cas possibles et test dans la fonction game" />
     <MESSAGE value="rectification générale :&#10;-changement séparateur combination&#10;-combinaison-&gt;combination&#10;-condition first_play&#10;-attemp(s)&#10;-condition sur choisir les couleurs au début" />
-    <option name="LAST_COMMIT_MESSAGE" value="rectification générale :&#10;-changement séparateur combination&#10;-combinaison-&gt;combination&#10;-condition first_play&#10;-attemp(s)&#10;-condition sur choisir les couleurs au début" />
+    <MESSAGE value="amélioration de la fonction number_partial_colors (fonctionne avec toutes les combinaisons)" />
+    <option name="LAST_COMMIT_MESSAGE" value="amélioration de la fonction number_partial_colors (fonctionne avec toutes les combinaisons)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>10</line>
+          <line>12</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>13</line>
+          <line>15</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

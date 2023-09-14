@@ -1,6 +1,7 @@
 import random
 import os
 
+
 '''Correct colors : number of good color and good placement'''
 '''Partial colors : number of good color but bad placement'''
 
@@ -90,13 +91,15 @@ def write_file(file_path,value):
 
         with open(file_path, 'w') as file:
             file.write(value)
-
+            file.close()
 
 def read_file(file_path):
     with open(file_path, 'r') as file:
         lignes = file.readlines()
+        file.close()
 
         return lignes[0]
+
 
 def statistics_display(games_played,score):
     print("Number of games_played : " + str(games_played))
@@ -109,7 +112,7 @@ def game():
     code_lenght=3
     first_play=True
     validated_colors=False
-
+    validated_combination=False
 
     if(test_file(".statistics/games_played.txt")==False):
         write_file(".statistics/games_played.txt","0")
@@ -161,7 +164,14 @@ def game():
 
                 print(true_combination)
 
-                user_combination = ask_combination(code_lenght)
+                while(validated_combination==False):
+
+                    user_combination = ask_combination(code_lenght)
+                    if(len(user_combination)==code_lenght):
+                        validated_combination=True
+                    else:
+                        print("You don't write a good combination, try again !")
+
                 number_of_correct_colors=number_correct_colors(user_combination,true_combination)
                 number_of_partial_colors=number_partial_colors(user_combination,true_combination)
 
