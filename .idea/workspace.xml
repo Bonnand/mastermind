@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39cc48d7-f41d-42b8-8b6e-b6798acbdab1" name="Changes" comment="">
+    <list default="true" id="39cc48d7-f41d-42b8-8b6e-b6798acbdab1" name="Changes" comment="Ajout commentaire dans la fonction main">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.statistics/games_played.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.statistics/games_played.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.statistics/score.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.statistics/score.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -153,7 +156,21 @@
       <option name="project" value="LOCAL" />
       <updated>1694703420795</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="passage consigne 3-&gt;7 : test de tkinter avec exemple sur internet">
+      <created>1694703727343</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1694703727343</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Ajout commentaire pour la fonction choose_colors">
+      <created>1694704338409</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1694704338409</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -170,19 +187,21 @@
     <MESSAGE value="amélioration de la fonction number_partial_colors (fonctionne avec toutes les combinaisons)" />
     <MESSAGE value="Vérification de l'entrée d'une bonne combinaison de la part de l'utilisateur" />
     <MESSAGE value="Ajout de commentaires et test du bon fonctionnement du jeu grâce à la fonction main" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout de commentaires et test du bon fonctionnement du jeu grâce à la fonction main" />
+    <MESSAGE value="passage consigne 3-&gt;7 : test de tkinter avec exemple sur internet" />
+    <MESSAGE value="Ajout commentaire pour la fonction choose_colors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout commentaire pour la fonction choose_colors" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>12</line>
+          <line>13</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>15</line>
+          <line>16</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

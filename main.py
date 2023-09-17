@@ -1,7 +1,8 @@
 import random
 import os
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk,messagebox,simpledialog
+import tkinter
 
 '''Correct colors : number of good color and good placement'''
 '''Partial colors : number of good color but bad placement'''
@@ -37,7 +38,8 @@ def choose_color():
 
 '''Ask the user to obtain a potential true combination'''
 def ask_combination(code_lenght):
-    combination = input("Write combination with "+str(code_lenght)+" colors (example : R-G-B-Y for RED GREEN BLUE YELLOW)")
+    #combination = input("Write combination with "+str(code_lenght)+" colors (example : R-G-B-Y for RED GREEN BLUE YELLOW)")
+    combination=simpledialog.askstring("Colors choice", "Write combination with "+str(code_lenght)+" colors (example : R-G-B-Y for RED GREEN BLUE YELLOW)")
     combination = combination.split("-")
 
     return(combination)
@@ -110,132 +112,164 @@ def read_file(file_path):
 
 '''It's saying in fonction's name '''
 def statistics_display(games_played,score):
-    print("Number of games_played : " + str(games_played))
-    print("Score : " + str(score))
+    #print("Number of games_played : " + str(games_played))
+    #print("Score : " + str(score))
+    messagebox.showinfo("Stats", "Number of games_played : " + str(games_played)+ " | Score : " + str(score))
 
+def play():
+    '''Definition of variables'''
+    replay = True
+    try_max = 12
+    code_lenght = 4
+    first_play = True
+    validated_colors = False
+    validated_combination = False
+
+    games_played = int(read_file('.statistics/games_played.txt'))
+    score = int(read_file('.statistics/score.txt'))
+
+    messagebox.showinfo("Infos","code lenght : " + str(code_lenght))
+    # print("Standard colors : Red|Green|Blue|Yellow|Purple|White")
+    messagebox.showinfo("Colors", "Standard colors : Red|Green|Blue|Yellow|Purple|White")
+
+    while (validated_colors == False):
+        # choice=input("Do you want to choose your colors or standard colors ? (your/standard)")
+        choice = simpledialog.askstring("Choice",
+                                        "Do you want to choose your colors or standard colors ? (your/standard)")
+        if (choice == "your"):
+            color_choosed = choose_color()
+            validated_colors = True
+
+        elif (choice == "standard"):
+            color_choosed = [[0], ["R", "G", "B", "Y", "P", "W"]]
+            validated_colors = True
+
+        if (validated_colors == False):
+            # print("Please answer to the question")
+            messagebox.showinfo("Error", "Please answer to the question")
+
+    # true_combination=["W","W","R"]
+
+
+    '''Variables initialisation/reinitialisation'''
+    game_over = False
+    try_number = 0
+    true_combination = random_combination(color_choosed[1], code_lenght)
+
+    while (try_number != try_max and game_over == False):
+
+        # print(true_combination)
+        messagebox.showerror("Code",true_combination)
+
+        while (validated_combination == False):
+
+            user_combination = ask_combination(code_lenght)
+
+            '''if user don't write a good code, code asking him again'''
+            if (len(user_combination) == code_lenght):
+                validated_combination = True
+            else:
+                #print("You don't write a good combination, try again !")
+                messagebox.showerror("Error","You don't write a good combination, try again !")
+
+        validated_combination = False
+
+        number_of_correct_colors = number_correct_colors(user_combination, true_combination)
+        number_of_partial_colors = number_partial_colors(user_combination, true_combination)
+
+        if (number_of_correct_colors == len(true_combination)):
+            game_over = True
+        else:
+            #print("Correct : " + str(number_of_correct_colors) + " | Partial : " + str(number_of_partial_colors))
+            #print("Try again !")
+            messagebox.showinfo("Infos", "Correct : " + str(number_of_correct_colors) + " | Partial : " + str(number_of_partial_colors) +" Try again !")
+
+        try_number += 1
+
+    if (game_over):
+        #print(f"You win with {str(try_number)} attempt{'s' if try_number > 1 else ''}")
+        #print("12 - " + str(try_number))
+        messagebox.showinfo("Win",f"You win with {str(try_number)} attempt{'s' if try_number > 1 else ''}")
+        messagebox.showinfo("Win","12 - " + str(try_number))
+        score += 1
+    else:
+        #print("You lose sorry :( ")
+        messagebox.showerror("Lose", "You lose sorry :( ")
+
+    '''Saving statistics'''
+    games_played += 1
+    statistics_display(games_played, score)
+    write_file(".statistics/games_played.txt", str(games_played))
+    write_file(".statistics/score.txt", str(score))
+
+    choice=simpledialog.askstring("Question", "Do you want replay")
+    if (choice=="yes"):
+        play()
+
+
+
+def leave(display):
+    #print("You leave the game")
+    messagebox.showinfo("leaving", "You leave the game")
+    display.destroy()
+
+def reset(games_played,score):
+    write_file(".statistics/games_played.txt", "0")
+    write_file(".statistics/score.txt", "0")
+    #statistics_display(games_played, score)
+    messagebox.showinfo("reset", "Games_played : 0 | Score :0")
 
 def game():
-    '''Definition of variables'''
 
-    replay = True
-    try_max=12
-    code_lenght=4
-    first_play=True
-    validated_colors=False
-    validated_combination=False
+    '''if(choice=="play" or choice=="replay"):
+
+        play(try_max, color_choosed, code_lenght, score, games_played,validated_combination)
+
+    elif (choice == "leave"):
+        leave()
+        replay=False
+
+    elif (choice == "reset"):
+        games_played=0
+        score=0
+        reset(games_played, score)'''
 
     '''Create and write a "0" if file doesn't exist'''
 
-    if(test_file(".statistics/games_played.txt")==False):
-        write_file(".statistics/games_played.txt","0")
+    if (test_file(".statistics/games_played.txt") == False):
+        write_file(".statistics/games_played.txt", "0")
 
     if (test_file(".statistics/score.txt") == False):
-        write_file(".statistics/score.txt","0")
+        write_file(".statistics/score.txt", "0")
 
     '''Read statistics of those two files'''
 
-    games_played=int(read_file('.statistics/games_played.txt'))
-    score=int(read_file('.statistics/score.txt'))
+    games_played = int(read_file('.statistics/games_played.txt'))
+    score = int(read_file('.statistics/score.txt'))
+
+    statistics_display(games_played, score)
 
 
-    print("code lenght : " + str(code_lenght))
-    statistics_display(games_played,score)
+display = Tk()
+display.title("MASTERMIND")
+display.wm_geometry("500x500+100+100")
+display.config(background='#582900')
+label_title = Label( text="Bienvenue sur le jeu MASTERMIND !", font=("Courrier", 40), bg='black',
+                            fg='#582900')
+label_title.pack()
 
+label_question = Label(  text="What do you want to do ?", font=("Courrier", 20), bg='black',
+                            fg='#582900')
+label_question.pack()
 
-    print("Standard colors : Red|Green|Blue|Yellow|Purple|White")
-
-    while(validated_colors==False):
-        choice=input("Do you want to choose your colors or standard colors ? (your/standard)")
-
-        if(choice=="your"):
-            color_choosed = choose_color()
-            validated_colors=True
-
-        elif(choice=="standard"):
-            color_choosed = [[0], ["R", "G", "B", "Y", "P", "W"]]
-            validated_colors=True
-
-        if(validated_colors==False):
-            print("Please answer to the question")
-
-    #true_combination=["W","W","R"]
-
-
-    while(replay):
-
-        if(first_play):
-            choice = input("What do you want to do : play/leave/reset")
-        else:
-            choice = input("What do you want to do : replay/leave/reset")
-
-        if(choice=="play" or choice=="replay"):
-
-            '''Variables initialisation/reinitialisation'''
-
-            first_play=False
-            game_over=False
-            try_number = 0
-            true_combination = random_combination(color_choosed[1], code_lenght)
-
-            while(try_number!=try_max and game_over==False):
-
-                #print(true_combination)
-
-                while(validated_combination==False):
-
-                    user_combination = ask_combination(code_lenght)
-
-                    '''if user don't write a good code, code asking him again'''
-                    if(len(user_combination)==code_lenght):
-                        validated_combination=True
-                    else:
-                        print("You don't write a good combination, try again !")
-
-                validated_combination=False
-
-                number_of_correct_colors=number_correct_colors(user_combination,true_combination)
-                number_of_partial_colors=number_partial_colors(user_combination,true_combination)
-
-
-                if(number_of_correct_colors==len(true_combination)):
-                    game_over=True
-                else:
-                    print("Correct : " + str(number_of_correct_colors) +" | Partial : "+ str(number_of_partial_colors))
-                    print("Try again !")
-                try_number += 1
-
-
-            if(game_over):
-                print(f"You win with {str(try_number)} attempt{'s' if try_number>1 else ''}")
-                print("12 - "+str(try_number))
-                score+=1
-            else:
-                print("You lose sorry :( ")
-
-            games_played+=1
-            statistics_display(games_played,score)
-            write_file(".statistics/games_played.txt", str(games_played))
-            write_file(".statistics/score.txt", str(score))
-
-        elif (choice == "leave"):
-            print("You leave the game")
-            replay= False
-
-        elif (choice == "reset"):
-            games_played=0
-            score=0
-            write_file(".statistics/games_played.txt","0")
-            write_file(".statistics/score.txt", "0")
-            statistics_display(games_played, score)
-
-
-    print("Game finish")
+play_button=tkinter.Button(display,text="play",bg="black",fg="#582900",command=play)
+play_button.pack()
+reset_button=tkinter.Button(display,text="reset",bg="black",fg="#582900",command=lambda: reset(0,0))
+reset_button.pack()
+leave_button=tkinter.Button(display,text="leave",bg="black",fg="#582900",command=lambda: leave(display))
+leave_button.pack()
 
 game()
 
-'''root = Tk()
-frm = ttk.Frame(root, padding=10)
-frm.grid()
-ttk.Label(frm, text="Hello World!").grid(column=0, row=0)
-ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
-root.mainloop()'''
+
+display.mainloop()
