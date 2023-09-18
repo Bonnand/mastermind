@@ -1,28 +1,28 @@
 import random
 import os
 from tkinter import *
-from tkinter import ttk,messagebox,simpledialog
+from tkinter import messagebox,simpledialog
 import tkinter
 
 '''Correct colors : number of good color and good placement'''
 '''Partial colors : number of good color but bad placement'''
 
-'''Colors definition       (Useless)
+'''Colors definition'''
 
 def recognize_color(color):    
     if(color=="R"):
-        return "Red"
+        return "#f00020"
     elif (color == "G"):
-        return "Green"
+        return "#008000"
     elif (color == "B"):
-        return "Blue"
+        return "#0000FF"
     elif (color == "Y"):
-        return "Yellow"
+        return "#FFFF00"
     elif (color == "P"):
-        return "Purple"
+        return "#800080"
     elif (color == "W"):
-        return "White"
-'''
+        return "#FFFFFF"
+
 
 '''Ask the user to choose colors'''
 def choose_color():
@@ -116,7 +116,11 @@ def statistics_display(games_played,score):
     #print("Score : " + str(score))
     messagebox.showinfo("Stats", "Number of games_played : " + str(games_played)+ " | Score : " + str(score))
 
-def play():
+def ball_creation(x,y,color,canvas):
+    radius = 12
+    canvas.create_oval(x - radius, y - radius, x + radius, y + radius, fill=color)
+
+def play(canvas):
     '''Definition of variables'''
     replay = True
     try_max = 12
@@ -124,6 +128,8 @@ def play():
     first_play = True
     validated_colors = False
     validated_combination = False
+    pos_x=20
+    pos_y=20
 
     games_played = int(read_file('.statistics/games_played.txt'))
     score = int(read_file('.statistics/score.txt'))
@@ -177,6 +183,12 @@ def play():
         number_of_correct_colors = number_correct_colors(user_combination, true_combination)
         number_of_partial_colors = number_partial_colors(user_combination, true_combination)
 
+        for idx in range(code_lenght):
+            ball_creation(pos_x,pos_y+(try_number*25),recognize_color(user_combination[idx]),canvas)
+            pos_x += 30
+
+        pos_x=20
+
         if (number_of_correct_colors == len(true_combination)):
             game_over = True
         else:
@@ -204,8 +216,8 @@ def play():
 
     choice=simpledialog.askstring("Question", "Do you want replay")
     if (choice=="yes"):
-        play()
-
+        canvas.delete("all")
+        play(canvas)
 
 
 def leave(display):
@@ -221,18 +233,18 @@ def reset(games_played,score):
 
 def game():
 
-    '''if(choice=="play" or choice=="replay"):
+    display = Tk()
+    display.title("MASTERMIND")
+    display.wm_geometry("1920x1080")
+    display.config(background='#582900')
 
-        play(try_max, color_choosed, code_lenght, score, games_played,validated_combination)
+    label_title = Label(text="Welcome to MASTERMIND !", font=("Courrier", 40), bg='black', fg='#582900')
+    label_title.pack()
+    label_question = Label(text="What do you want to do ?", font=("Courrier", 20), bg='black', fg='#582900')
+    label_question.pack()
 
-    elif (choice == "leave"):
-        leave()
-        replay=False
-
-    elif (choice == "reset"):
-        games_played=0
-        score=0
-        reset(games_played, score)'''
+    canvas = tkinter.Canvas(display, background='#34942a', width=500, height=400)
+    canvas.pack()
 
     '''Create and write a "0" if file doesn't exist'''
 
@@ -249,27 +261,16 @@ def game():
 
     statistics_display(games_played, score)
 
+    play_button = tkinter.Button(display, text="play", bg="black", fg="#582900", command=lambda: play(canvas))
+    play_button.pack()
+    reset_button = tkinter.Button(display, text="reset", bg="black", fg="#582900", command=lambda: reset(0, 0))
+    reset_button.pack()
+    leave_button = tkinter.Button(display, text="leave", bg="black", fg="#582900", command=lambda: leave(display))
+    leave_button.pack()
 
-display = Tk()
-display.title("MASTERMIND")
-display.wm_geometry("500x500+100+100")
-display.config(background='#582900')
-label_title = Label( text="Bienvenue sur le jeu MASTERMIND !", font=("Courrier", 40), bg='black',
-                            fg='#582900')
-label_title.pack()
+    display.mainloop()
 
-label_question = Label(  text="What do you want to do ?", font=("Courrier", 20), bg='black',
-                            fg='#582900')
-label_question.pack()
 
-play_button=tkinter.Button(display,text="play",bg="black",fg="#582900",command=play)
-play_button.pack()
-reset_button=tkinter.Button(display,text="reset",bg="black",fg="#582900",command=lambda: reset(0,0))
-reset_button.pack()
-leave_button=tkinter.Button(display,text="leave",bg="black",fg="#582900",command=lambda: leave(display))
-leave_button.pack()
 
 game()
 
-
-display.mainloop()
