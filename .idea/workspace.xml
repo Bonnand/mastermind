@@ -184,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695034646796</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Modification de la valeur d'entrée de l'utilisateur dans la fonction ask_combination">
+      <created>1695237504160</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1695237504160</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -205,7 +212,8 @@
     <MESSAGE value="Ajout commentaire pour la fonction choose_colors" />
     <MESSAGE value="réalisation de la première version de l'interface avec tkinter (modification de la structure du programme)" />
     <MESSAGE value="Utilisation de la fonction recognize_colors et ajout d'un canvas pour une meilleure interface (interface rudimentaire en cours d'amelioration)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Utilisation de la fonction recognize_colors et ajout d'un canvas pour une meilleure interface (interface rudimentaire en cours d'amelioration)" />
+    <MESSAGE value="Modification de la valeur d'entrée de l'utilisateur dans la fonction ask_combination" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modification de la valeur d'entrée de l'utilisateur dans la fonction ask_combination" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

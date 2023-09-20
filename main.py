@@ -22,6 +22,12 @@ def recognize_color(color):
         return "#800080"
     elif (color == "W"):
         return "#FFFFFF"
+    elif (color == "M"):
+        return "#582900"
+    elif (color == "O"):
+        return "#FE6800"
+    elif (color == "T"):
+        return "#00FEEB"
 
 
 '''Ask the user to choose colors'''
@@ -29,10 +35,13 @@ def choose_color():
     color=["None"]*6
     initial=["None"]*6
 
-    print("Write 6 color with her initial")
+    #print("Write 6 color with her initial")
+    messagebox.showinfo("Colors choice", "Write 6 color with her initial")
     for idx in range(6):
-        color[idx]=input("Write color "+str(idx+1))
-        initial[idx]=input("Write initial")
+        #color[idx]=input("Write color "+str(idx+1))
+        # initial[idx]=input("Write initial")
+        color[idx]=simpledialog.askstring("Colors choice", "Write color "+str(idx+1))
+        initial[idx]=simpledialog.askstring("Colors choice", "Write initial")
 
     return [color,initial]
 
@@ -124,13 +133,11 @@ def ball_creation(x,y,color,canvas):
     radius = 12
     canvas.create_oval(x - radius, y - radius, x + radius, y + radius, fill=color)
 
-def play(canvas):
+def play(canvas,color_choosed):
     '''Definition of variables'''
-    replay = True
+
     try_max = 12
     code_lenght = 4
-    first_play = True
-    validated_colors = False
     validated_combination = False
     pos_x=20
     pos_y=20
@@ -140,25 +147,6 @@ def play(canvas):
 
     messagebox.showinfo("Infos","code lenght : " + str(code_lenght))
     # print("Standard colors : Red|Green|Blue|Yellow|Purple|White")
-    messagebox.showinfo("Colors", "Standard colors : Red|Green|Blue|Yellow|Purple|White")
-
-    while (validated_colors == False):
-        # choice=input("Do you want to choose your colors or standard colors ? (your/standard)")
-        choice = simpledialog.askstring("Choice",
-                                        "Do you want to choose your colors or standard colors ? (your/standard)")
-        if (choice == "your"):
-            color_choosed = choose_color()
-            validated_colors = True
-
-        elif (choice == "standard"):
-            color_choosed = [[0], ["R", "G", "B", "Y", "P", "W"]]
-            validated_colors = True
-
-        if (validated_colors == False):
-            # print("Please answer to the question")
-            messagebox.showinfo("Error", "Please answer to the question")
-
-    # true_combination=["W","W","R"]
 
 
     '''Variables initialisation/reinitialisation'''
@@ -168,8 +156,8 @@ def play(canvas):
 
     while (try_number != try_max and game_over == False):
 
-        # print(true_combination)
-        #messagebox.showerror("Code",true_combination)
+        #print(true_combination)
+        messagebox.showinfo("Code",true_combination)
 
         while (validated_combination == False):
 
@@ -217,11 +205,7 @@ def play(canvas):
     statistics_display(games_played, score)
     write_file(".statistics/games_played.txt", str(games_played))
     write_file(".statistics/score.txt", str(score))
-
-    choice=simpledialog.askstring("Question", "Do you want replay")
-    if (choice=="yes"):
-        canvas.delete("all")
-        play(canvas)
+    canvas.delete("all")
 
 
 def leave(display):
@@ -237,6 +221,7 @@ def reset(games_played,score):
 
 def game():
 
+    validated_colors = False
     display = Tk()
     display.title("MASTERMIND")
     display.wm_geometry("1920x1080")
@@ -258,14 +243,33 @@ def game():
     if (test_file(".statistics/score.txt") == False):
         write_file(".statistics/score.txt", "0")
 
-    '''Read statistics of those two files'''
+    '''Read statistics of these two files'''
 
     games_played = int(read_file('.statistics/games_played.txt'))
     score = int(read_file('.statistics/score.txt'))
 
     statistics_display(games_played, score)
 
-    play_button = tkinter.Button(display, text="play", bg="black", fg="#582900", command=lambda: play(canvas))
+    messagebox.showinfo("Colors", "Colors availables : Red|Green|Blue|Yellow|Purple|White|Turquoise|Orange|Marron")
+    messagebox.showinfo("Colors", "Standard colors : Red|Green|Blue|Yellow|Purple|White")
+    while (validated_colors == False):
+        # choice=input("Do you want to choose your colors or standard colors ? (your/standard)")
+        choice = simpledialog.askstring("Choice",
+                                        "Do you want to choose your colors or standard colors ? (your/standard)")
+        if (choice == "your"):
+            color_choosed = choose_color()
+            validated_colors = True
+
+        elif (choice == "standard"):
+            color_choosed = [[0], ["R", "G", "B", "Y", "P", "W"]]
+            validated_colors = True
+
+        if (validated_colors == False):
+            # print("Please answer to the question")
+            messagebox.showinfo("Error", "Please answer to the question")
+
+
+    play_button = tkinter.Button(display, text="play", bg="black", fg="#582900", command=lambda: play(canvas,color_choosed))
     play_button.pack()
     reset_button = tkinter.Button(display, text="reset", bg="black", fg="#582900", command=lambda: reset(0, 0))
     reset_button.pack()
