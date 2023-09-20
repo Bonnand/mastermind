@@ -129,8 +129,8 @@ def statistics_display(games_played,score):
     #print("Score : " + str(score))
     messagebox.showinfo("Stats", "Number of games_played : " + str(games_played)+ " | Score : " + str(score))
 
-def ball_creation(x,y,color,canvas):
-    radius = 12
+def ball_creation(x,y,color,canvas,radius):
+
     canvas.create_oval(x - radius, y - radius, x + radius, y + radius, fill=color)
 
 def play(canvas,color_choosed):
@@ -139,8 +139,8 @@ def play(canvas,color_choosed):
     try_max = 12
     code_lenght = 4
     validated_combination = False
-    pos_x=20
-    pos_y=20
+    pos_x=250
+    pos_y=10
 
     games_played = int(read_file('.statistics/games_played.txt'))
     score = int(read_file('.statistics/score.txt'))
@@ -157,7 +157,7 @@ def play(canvas,color_choosed):
     while (try_number != try_max and game_over == False):
 
         #print(true_combination)
-        messagebox.showinfo("Code",true_combination)
+        #messagebox.showinfo("Code",true_combination)
 
         while (validated_combination == False):
 
@@ -175,11 +175,28 @@ def play(canvas,color_choosed):
         number_of_correct_colors = number_correct_colors(user_combination, true_combination)
         number_of_partial_colors = number_partial_colors(user_combination, true_combination)
 
+
+
+
+        for i in range(number_of_partial_colors):
+            ball_creation(pos_x, pos_y + (try_number * 25), "white", canvas,4)
+            pos_x += 10
+
+        pos_x=600
+        pos_y+=10
+
         for idx in range(code_lenght):
-            ball_creation(pos_x,pos_y+(try_number*25),recognize_color(user_combination[idx]),canvas)
+            ball_creation(pos_x,pos_y+(try_number*25),recognize_color(user_combination[idx]),canvas,12)
             pos_x += 30
 
-        pos_x=20
+        pos_x = 1000
+        pos_y -= 10
+
+        for i in range(number_of_correct_colors):
+            ball_creation(pos_x, pos_y + (try_number * 25), "Red", canvas,4)
+            pos_x += 10
+
+        pos_x=250
 
         if (number_of_correct_colors == len(true_combination)):
             game_over = True
@@ -224,15 +241,13 @@ def game():
     validated_colors = False
     display = Tk()
     display.title("MASTERMIND")
-    display.wm_geometry("1920x1080")
-    display.config(background='#582900')
+    display.attributes('-fullscreen', True)
+    display.config(background='#D3D3D3')
 
-    label_title = Label(text="Welcome to MASTERMIND !", font=("Courrier", 40), bg='black', fg='#582900')
-    label_title.pack()
-    label_question = Label(text="What do you want to do ?", font=("Courrier", 20), bg='black', fg='#582900')
-    label_question.pack()
+    label_title = Label(text="Welcome to MASTERMIND !", font=('Cambria', 40), bg='blue', fg='white',pady=20)
+    label_title.pack(fill=X)
 
-    canvas = tkinter.Canvas(display, background='#34942a', width=500, height=400)
+    canvas = tkinter.Canvas(display, background='#D3D3D3', width=1280, height=426)
     canvas.pack()
 
     '''Create and write a "0" if file doesn't exist'''
@@ -268,13 +283,14 @@ def game():
             # print("Please answer to the question")
             messagebox.showinfo("Error", "Please answer to the question")
 
-
-    play_button = tkinter.Button(display, text="play", bg="black", fg="#582900", command=lambda: play(canvas,color_choosed))
-    play_button.pack()
-    reset_button = tkinter.Button(display, text="reset", bg="black", fg="#582900", command=lambda: reset(0, 0))
-    reset_button.pack()
-    leave_button = tkinter.Button(display, text="leave", bg="black", fg="#582900", command=lambda: leave(display))
-    leave_button.pack()
+    label_question = Label(text="What do you want to do ?", font=('Cambria', 20), bg='blue', fg='white', pady=15 ,borderwidth=1,relief="groove")
+    label_question.pack(fill=X)
+    play_button = tkinter.Button(display,relief="raised", text="play", bg="blue", fg="white",font=20, command=lambda: play(canvas,color_choosed))
+    play_button.pack(fill = X)
+    reset_button = tkinter.Button(display,relief="raised", text="reset", bg="blue", fg="white",font=20, command=lambda: reset(0, 0))
+    reset_button.pack(fill = X)
+    leave_button = tkinter.Button(display,relief="raised", text="leave", bg="blue", fg="white",font=20, command=lambda: leave(display))
+    leave_button.pack(fill = X)
 
     display.mainloop()
 

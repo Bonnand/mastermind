@@ -191,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695237504160</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Modification de la fonction choose_color, suppression de la demande de replay et de demander les couleurs choisies à chaque tour">
+      <created>1695238946033</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1695238946033</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -213,7 +220,8 @@
     <MESSAGE value="réalisation de la première version de l'interface avec tkinter (modification de la structure du programme)" />
     <MESSAGE value="Utilisation de la fonction recognize_colors et ajout d'un canvas pour une meilleure interface (interface rudimentaire en cours d'amelioration)" />
     <MESSAGE value="Modification de la valeur d'entrée de l'utilisateur dans la fonction ask_combination" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modification de la valeur d'entrée de l'utilisateur dans la fonction ask_combination" />
+    <MESSAGE value="Modification de la fonction choose_color, suppression de la demande de replay et de demander les couleurs choisies à chaque tour" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modification de la fonction choose_color, suppression de la demande de replay et de demander les couleurs choisies à chaque tour" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
