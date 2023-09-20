@@ -38,11 +38,15 @@ def choose_color():
 
 '''Ask the user to obtain a potential true combination'''
 def ask_combination(code_lenght):
-    #combination = input("Write combination with "+str(code_lenght)+" colors (example : R-G-B-Y for RED GREEN BLUE YELLOW)")
-    combination=simpledialog.askstring("Colors choice", "Write combination with "+str(code_lenght)+" colors (example : R-G-B-Y for RED GREEN BLUE YELLOW)")
-    combination = combination.split("-")
+    combination_list = []
 
-    return(combination)
+    #combination = input("Write combination with "+str(code_lenght)+" colors (example : R-G-B-Y for RED GREEN BLUE YELLOW)")
+    combination=simpledialog.askstring("Colors choice", "Write combination with "+str(code_lenght)+" colors (example : RGBY for RED GREEN BLUE YELLOW)")
+
+    for color in combination:
+        combination_list.append(color)
+
+    return(combination_list)
 
 
 '''Creation of random code with user's colors '''
@@ -165,7 +169,7 @@ def play(canvas):
     while (try_number != try_max and game_over == False):
 
         # print(true_combination)
-        messagebox.showerror("Code",true_combination)
+        #messagebox.showerror("Code",true_combination)
 
         while (validated_combination == False):
 
