@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39cc48d7-f41d-42b8-8b6e-b6798acbdab1" name="Changes" comment="">
+    <list default="true" id="39cc48d7-f41d-42b8-8b6e-b6798acbdab1" name="Changes" comment="Amélioration de l'interface version 2 avec ajout de lignes pour une meilleure visibilité et changement des coordonnées des indicateurs partiel/correct.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.statistics/games_played.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.statistics/games_played.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.statistics/score.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.statistics/score.txt" afterDir="false" />
@@ -198,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695238946033</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Changement de l'interface (version 2)">
+      <created>1695242717251</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1695242717251</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -221,7 +228,8 @@
     <MESSAGE value="Utilisation de la fonction recognize_colors et ajout d'un canvas pour une meilleure interface (interface rudimentaire en cours d'amelioration)" />
     <MESSAGE value="Modification de la valeur d'entrée de l'utilisateur dans la fonction ask_combination" />
     <MESSAGE value="Modification de la fonction choose_color, suppression de la demande de replay et de demander les couleurs choisies à chaque tour" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modification de la fonction choose_color, suppression de la demande de replay et de demander les couleurs choisies à chaque tour" />
+    <MESSAGE value="Changement de l'interface (version 2)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changement de l'interface (version 2)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

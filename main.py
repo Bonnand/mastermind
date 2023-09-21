@@ -4,8 +4,8 @@ from tkinter import *
 from tkinter import messagebox,simpledialog
 import tkinter
 
-'''Correct colors : number of good color and good placement'''
-'''Partial colors : number of good color but bad placement'''
+'''Correct colors : number of good color and good placement (Color=Red)'''
+'''Partial colors : number of good color but bad placement (Color=White)'''
 
 '''Colors definition'''
 
@@ -28,6 +28,8 @@ def recognize_color(color):
         return "#FE6800"
     elif (color == "T"):
         return "#00FEEB"
+    else:
+        return"#000000"
 
 
 '''Ask the user to choose colors'''
@@ -140,7 +142,7 @@ def play(canvas,color_choosed):
     code_lenght = 4
     validated_combination = False
     pos_x=250
-    pos_y=10
+    pos_y=20
 
     games_played = int(read_file('.statistics/games_played.txt'))
     score = int(read_file('.statistics/score.txt'))
@@ -182,21 +184,24 @@ def play(canvas,color_choosed):
             ball_creation(pos_x, pos_y + (try_number * 25), "white", canvas,4)
             pos_x += 10
 
-        pos_x=600
-        pos_y+=10
-
-        for idx in range(code_lenght):
-            ball_creation(pos_x,pos_y+(try_number*25),recognize_color(user_combination[idx]),canvas,12)
-            pos_x += 30
-
         pos_x = 1000
-        pos_y -= 10
 
         for i in range(number_of_correct_colors):
             ball_creation(pos_x, pos_y + (try_number * 25), "Red", canvas,4)
             pos_x += 10
 
+        pos_x=600
+
+
+        for idx in range(code_lenght):
+            ball_creation(pos_x,pos_y+(try_number*25),recognize_color(user_combination[idx]),canvas,12)
+            pos_x += 30
+
         pos_x=250
+        canvas.create_line(0, pos_y+15+(try_number * 25),  1280, pos_y+15+(try_number * 25), width=2, fill="#C0C0C0")
+        pos_y+=5
+
+
 
         if (number_of_correct_colors == len(true_combination)):
             game_over = True
